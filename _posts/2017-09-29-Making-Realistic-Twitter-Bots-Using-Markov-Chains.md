@@ -18,5 +18,8 @@ My bot [McDonaldTrump](https://twitter.com/__McDonaldTrump) is puts out about 50
 
 **Here is one I liked**
 
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Go out and build a WALL!.<a href="https://twitter.com/KatrinaCampins?ref_src=twsrc%5Etfw">@KatrinaCampins</a> Thank you to the end result was solid!Dishonest media is able to extort $1,000,000.00 from me.</p>&mdash; Donald Trump (@__McDonaldTrump) <a href="https://twitter.com/__McDonaldTrump/status/912251927349559296?ref_src=twsrc%5Etfw">September 25, 2017</a></blockquote>
+* <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Go out and build a WALL!.<a href="https://twitter.com/KatrinaCampins?ref_src=twsrc%5Etfw">@KatrinaCampins</a> Thank you to the end result was solid!Dishonest media is able to extort $1,000,000.00 from me.</p>&mdash; Donald Trump (@__McDonaldTrump) <a href="https://twitter.com/__McDonaldTrump/status/912251927349559296?ref_src=twsrc%5Etfw">September 25, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
++ <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">MAKE AMERICA GREAT AGAIN!Join my team of deplorables for tonights <a href="https://twitter.com/hashtag/debate?src=hash&amp;ref_src=twsrc%5Etfw">#debate</a> <a href="https://twitter.com/hashtag/MakeAmericaGreatAgainUNBELIEVABLE?src=hash&amp;ref_src=twsrc%5Etfw">#MakeAmericaGreatAgainUNBELIEVABLE</a>!</p>&mdash; Donald Trump (@__McDonaldTrump) <a href="https://twitter.com/__McDonaldTrump/status/913465988393422849?ref_src=twsrc%5Etfw">September 28, 2017</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
