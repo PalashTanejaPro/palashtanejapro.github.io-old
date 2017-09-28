@@ -18,8 +18,6 @@ My bot [McDonaldTrump](https://twitter.com/__McDonaldTrump) is puts out about 50
 
 **Here are a few that I liked:**
 
-* <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">MAKE AMERICA GREAT AGAIN!Join my team of deplorables for tonights <a href="https://twitter.com/hashtag/debate?src=hash&amp;ref_src=twsrc%5Etfw">#debate</a> <a href="https://twitter.com/hashtag/MakeAmericaGreatAgainUNBELIEVABLE?src=hash&amp;ref_src=twsrc%5Etfw">#MakeAmericaGreatAgainUNBELIEVABLE</a>!</p>&mdash; Donald Trump (@__McDonaldTrump) <a href="https://twitter.com/__McDonaldTrump/status/913465988393422849?ref_src=twsrc%5Etfw">September 28, 2017</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><br>
 
 * <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Get rid of the others?An incredible honor to be <a href="https://twitter.com/hashtag/AmericaFirst?src=hash&amp;ref_src=twsrc%5Etfw">#AmericaFirst</a>!</p>&mdash; Donald Trump (@__McDonaldTrump) <a href="https://twitter.com/__McDonaldTrump/status/912944443879239680?ref_src=twsrc%5Etfw">September 27, 2017</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><br>
