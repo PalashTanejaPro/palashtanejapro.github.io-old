@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Teaching RNNs to Code and More..
+published: true
 ---
 
 RNNs have are some of the most effective and intriguing machine learning models, they capture what I consider to be an important part of human thinking and learning, serialization of learning. 
@@ -9,7 +10,7 @@ A major drawback of <i>vanilla</i> neural networks is the inability to learn lon
 
 I implemented a char2char recurrent net using Tensorflow and left it to train on Linux Kernel Code overnight on my MacBook Air (i5 dual core). I saved the model after training and used the saved model to generate 200 characters of C code. 
 
-{%highlight C%}
+~~~cpp
 void __weak yource_interrupt(unsigned int spd, unsigned int cpu)
 {
 	struct workqueue_struct *wq = worker->pool;
@@ -45,8 +46,7 @@ void __weak yource_interrupt(unsigned int spd, unsigned int cpu)
 
 	return ret;
 }
-
-{%endhighlight%}
+~~~
 As you can probably see even if you're not a C programmer the code looks alright, the RNN even does a good job at indenting the code and unless you look into it closely you probably won't be able to notice errors. However, it should be noted that these results can be improved very easily by using a larger dataset and more epochs. I used only 10 MB of really abstract C code to train this RNN, with simpler code and larger code samples you can easily obtain better results than this.
 
 
