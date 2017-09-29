@@ -12,14 +12,14 @@ description: >
   My CS Research Blog.
 logo: "/assets/images/logo.jpg"
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+url: "https://palashtanejapro.github.io/" # the base hostname & protocol for your site
 paginate:	5 # The number of posts to show per page on your homepage
 
 name: 'Palash Taneja'
 bio: >
   I am a high school senior who likes to tinker with computers and AI.
 author_image: "/assets/images/author.jpg"
-twitter_username: PalashTaneja
+twitter_username:
 github_username:  PalashTanejaPro
 
 # Google Analytics
