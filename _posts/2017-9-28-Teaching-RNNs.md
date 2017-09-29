@@ -4,7 +4,7 @@ title: Teaching RNNs to Code and More..
 published: true
 ---
 
-RNNs have are some of the most effective and intriguing machine learning models, they capture what I consider to be an important part of human thinking and learning, serialization of learning. 
+RNNs are some of the most effective and intriguing machine learning models, they capture what I consider to be an important part of human thinking and learning, serialization of learning. 
 
 A major drawback of <i>vanilla</i> neural networks is the inability to learn long-term patterns in different data points. Recurrent Neural Nets are able to overcome this drawback by feeding the previous hidden states to the current hidden state. This is what differentiates them from <i>vanilla</i> Neural Nets.
 
@@ -48,5 +48,3 @@ void __weak yource_interrupt(unsigned int spd, unsigned int cpu)
 }
 ~~~
 As you can probably see even if you're not a C programmer the code looks alright, the RNN even does a good job at indenting the code and unless you look into it closely you probably won't be able to notice errors. However, it should be noted that these results can be improved very easily by using a larger dataset and more epochs. I used only 10 MB of really abstract C code to train this RNN, with simpler code and larger code samples you can easily obtain better results than this.
-
-
