@@ -31,5 +31,6 @@ markdown: kramdown
 kramdown:
   parse_block_html: true
   syntax_highlighter: rouge
-gems:
+plugins:
   - jekyll-paginate
+  - jekyll-admin
