@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1">
 
   <title>Teaching RNNs to Code and More..</title>
-  <meta name="description" content="RNNs have are some of the most effective and intriguing machine learning models, they capture what I consider to be an important part of human thinking and l...">
+  <meta name="description" content="RNNs are some of the most effective and intriguing machine learning models, they capture what I consider to be an important part of human thinking and learni...">
 
   <link rel="canonical" href="http://localhost:4000/2017/09/28/Teaching-RNNs.html">
   <link rel="alternate" type="application/rss+xml" title="Palash's Research Blog" href="http://localhost:4000/feed.xml">
@@ -25,7 +25,7 @@
   "headline": "Teaching RNNs to Code and More..",
   "datePublished": "2017-09-28T00:00:00+05:30",
   "dateModified": "2017-09-28T00:00:00+05:30",
-  "description": "RNNs have are some of the most effective and intriguing machine learning models, they capture what I consider to be an important part of human thinking and l...",
+  "description": "RNNs are some of the most effective and intriguing machine learning models, they capture what I consider to be an important part of human thinking and learni...",
   "author": {
     "@type": "Person",
     "name": "Palash Taneja"
@@ -376,14 +376,13 @@ pre > code { border: 0; padding-right: 0; padding-left: 0; }
   
     <section class="post-content">
       <a name="topofpage"></a>
-      <p>RNNs have are some of the most effective and intriguing machine learning models, they capture what I consider to be an important part of human thinking and learning, serialization of learning.</p>
+      <p>RNNs are some of the most effective and intriguing machine learning models, they capture what I consider to be an important part of human thinking and learning, serialization of learning.</p>
 
 <p>A major drawback of <i>vanilla</i> neural networks is the inability to learn long-term patterns in different data points. Recurrent Neural Nets are able to overcome this drawback by feeding the previous hidden states to the current hidden state. This is what differentiates them from <i>vanilla</i> Neural Nets.</p>
 
 <p>I implemented a char2char recurrent net using Tensorflow and left it to train on Linux Kernel Code overnight on my MacBook Air (i5 dual core). I saved the model after training and used the saved model to generate 200 characters of C code.</p>
 
-<figure class="highlight">
-  <pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="n">__weak</span> <span class="nf">yource_interrupt</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">spd</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">cpu</span><span class="p">)</span>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="kt">void</span> <span class="n">__weak</span> <span class="nf">yource_interrupt</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">spd</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">cpu</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="k">struct</span> <span class="n">workqueue_struct</span> <span class="o">*</span><span class="n">wq</span> <span class="o">=</span> <span class="n">worker</span><span class="o">-&gt;</span><span class="n">pool</span><span class="p">;</span>
 
@@ -402,14 +401,14 @@ pre > code { border: 0; padding-right: 0; padding-left: 0; }
 	<span class="n">lockdep_assert_held</span><span class="p">(</span><span class="o">&amp;</span><span class="n">flush_slow_init_mod</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
 		<span class="n">strict_iomem_check</span><span class="p">;</span>
 
-	<span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">rr</span><span class="o">-&gt;</span><span class="n">bool</span><span class="p">)</span>
+	<span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">rr</span><span class="o">-&gt;</span><span class="kt">bool</span><span class="p">)</span>
 		<span class="k">goto</span> <span class="n">out</span><span class="p">;</span>
 
 	<span class="cm">/* we release and optimization next only */</span>
 	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">pi</span><span class="o">-&gt;</span><span class="n">ehdr</span><span class="o">-&gt;</span><span class="n">e_shend</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
 		<span class="k">if</span> <span class="p">(</span><span class="n">ret</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">si_code</span> <span class="o">&gt;</span> <span class="mi">62</span><span class="p">)</span>
 			<span class="n">image</span><span class="o">-&gt;</span><span class="n">hending</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-		<span class="k">struct</span> <span class="n">user_namespace</span> <span class="o">*</span><span class="n">user</span> <span class="n">new</span><span class="p">;</span>
+		<span class="k">struct</span> <span class="n">user_namespace</span> <span class="o">*</span><span class="n">user</span> <span class="k">new</span><span class="p">;</span>
 		<span class="n">urst</span> <span class="o">=</span> <span class="n">uts</span><span class="p">;</span>
 		<span class="n">image</span><span class="o">-&gt;</span><span class="n">set</span><span class="p">.</span><span class="n">sigstart_code</span> <span class="o">=</span> <span class="n">KEXEC_ARCH_BITS</span><span class="p">)</span> <span class="o">?</span> <span class="s">"(mew-&gt;se.signal-&gt;coter) list"</span><span class="p">,</span> <span class="n">CPU_INTENSIVE</span><span class="p">)</span>
 				<span class="n">ptrace_exit</span><span class="p">();</span>
@@ -417,11 +416,10 @@ pre > code { border: 0; padding-right: 0; padding-left: 0; }
 		<span class="k">goto</span> <span class="n">err</span><span class="p">;</span>
 
 	<span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
-</figure>
-
+<span class="p">}</span>
+</code></pre>
+</div>
 <p>As you can probably see even if you’re not a C programmer the code looks alright, the RNN even does a good job at indenting the code and unless you look into it closely you probably won’t be able to notice errors. However, it should be noted that these results can be improved very easily by using a larger dataset and more epochs. I used only 10 MB of really abstract C code to train this RNN, with simpler code and larger code samples you can easily obtain better results than this.</p>
-
 
     </section>
     <footer class="post-footer">
@@ -479,6 +477,29 @@ pre > code { border: 0; padding-right: 0; padding-left: 0; }
       </div>
     </div>
   </article>
+  <div id="disqus">
+    <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://research-blog.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+  </div>
 </main>
 
 

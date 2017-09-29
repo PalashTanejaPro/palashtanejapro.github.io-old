@@ -6,20 +6,95 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 28 Sep 2017 23:27:46 +0530</pubDate>
-    <lastBuildDate>Thu, 28 Sep 2017 23:27:46 +0530</lastBuildDate>
+    <pubDate>Fri, 29 Sep 2017 11:11:59 +0530</pubDate>
+    <lastBuildDate>Fri, 29 Sep 2017 11:11:59 +0530</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
     
       <item>
+        <title>Making Realistic Twitter Bots Using Markov Chains</title>
+        <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Markov chains, named after Andrey Markov, are mathematical systems that hop from one “state” (a situation or set of values) to another. For example, if you made a Markov chain model of a baby’s behavior, you might include “playing,” “eating”, “sleeping,” and “crying” as states, which together with other behaviors could form a ‘state space’: a list of all possible states. In addition, on top of the state space, a Markov chain tells you the probabilitiy of hopping, or “transitioning,” from one state to any other state—e.g., the chance that a baby currently playing will fall asleep in the next five minutes without crying first.&lt;/p&gt;
+
+&lt;p&gt;Even though they are overshadowed by Deep Learning Models like RNNs and DNNs, they prove to be very effective in sentence generation tasks. We have all seen the autocorrect predictions on our phones, in fact they are based on Markov chains and they can be tapped repeatedly to generate loopy sentences.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://setosa.io/ev/markov-chains/&quot;&gt;Here is a great introduction to markov chains.&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;implementation&quot;&gt;Implementation&lt;/h2&gt;
+
+&lt;p&gt;I wanted to do something interesting and comedic with Markov Chains so I decided to make a Donald Trump tweet bot from a &lt;a href=&quot;https://www.kaggle.com/kingburrito666/better-donald-trump-tweets&quot;&gt;Trump tweet dataset.&lt;/a&gt; and made a state 2 Markov Chain from it.
+I used the tweepy library for Python to create the Twitter Bot.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;tweepy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;markovify&lt;/span&gt;
+
+ 
+&lt;span class=&quot;c&quot;&gt;#enter the corresponding information from your Twitter application:&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;CONSUMER_KEY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'KEY'&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#keep the quotes, replace this with your consumer key&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;CONSUMER_SECRET&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'SECRET'&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#keep the quotes, replace this with your consumer secret key&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ACCESS_KEY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'KEY'&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#keep the quotes, replace this with your access token&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ACCESS_SECRET&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'SECRET'&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#keep the quotes, replace this with your access token secret&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;auth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tweepy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;OAuthHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CONSUMER_KEY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CONSUMER_SECRET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;auth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_access_token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ACCESS_KEY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ACCESS_SECRET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;api&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tweepy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;API&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;auth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ 
+&lt;span class=&quot;n&quot;&gt;model_json&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'sav1.json'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;markovify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from_json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model_json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;make_short_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update_status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Tweet Made: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;900&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#Tweet every 15 minutes&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
+
+&lt;p&gt;My bot &lt;a href=&quot;https://twitter.com/__McDonaldTrump&quot;&gt;McDonaldTrump&lt;/a&gt; is puts out about 50-60% grammatically incorrect and incoherent tweets but the remaining ones are &lt;em&gt;worth a laugh!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Here are a few that I liked:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;
+      &lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Get rid of the others?An incredible honor to be &lt;a href=&quot;https://twitter.com/hashtag/AmericaFirst?src=hash&amp;amp;ref_src=twsrc%5Etfw&quot;&gt;#AmericaFirst&lt;/a&gt;!&lt;/p&gt;
+      &lt;p&gt;— Donald Trump (@__McDonaldTrump) &lt;a href=&quot;https://twitter.com/__McDonaldTrump/status/912944443879239680?ref_src=twsrc%5Etfw&quot;&gt;September 27, 2017&lt;/a&gt;&amp;lt;/blockquote&amp;gt;
+&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;br /&gt;&lt;/p&gt;
+
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;
+      &lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;People are not true- just like we have no country.&lt;/p&gt;
+      &lt;p&gt;— Donald Trump (@__McDonaldTrump) &lt;a href=&quot;https://twitter.com/__McDonaldTrump/status/912232902351519744?ref_src=twsrc%5Etfw&quot;&gt;September 25, 2017&lt;/a&gt;&amp;lt;/blockquote&amp;gt;
+&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;br /&gt;&lt;/p&gt;
+
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;
+      &lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Go out and build a WALL!.&lt;a href=&quot;https://twitter.com/KatrinaCampins?ref_src=twsrc%5Etfw&quot;&gt;@KatrinaCampins&lt;/a&gt; Thank you to the end result was solid!Dishonest media is able to extort $1,000,000.00 from me.&lt;/p&gt;
+      &lt;p&gt;— Donald Trump (@__McDonaldTrump) &lt;a href=&quot;https://twitter.com/__McDonaldTrump/status/912251927349559296?ref_src=twsrc%5Etfw&quot;&gt;September 25, 2017&lt;/a&gt;&amp;lt;/blockquote&amp;gt;
+&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;br /&gt;&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 29 Sep 2017 00:00:00 +0530</pubDate>
+        <link>http://localhost:4000/2017/09/29/Making-Realistic-Twitter-Bots-Using-Markov-Chains.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/09/29/Making-Realistic-Twitter-Bots-Using-Markov-Chains.html</guid>
+        
+        
+      </item>
+    
+      <item>
         <title>Teaching RNNs to Code and More..</title>
-        <description>&lt;p&gt;RNNs have are some of the most effective and intriguing machine learning models, they capture what I consider to be an important part of human thinking and learning, serialization of learning.&lt;/p&gt;
+        <description>&lt;p&gt;RNNs are some of the most effective and intriguing machine learning models, they capture what I consider to be an important part of human thinking and learning, serialization of learning.&lt;/p&gt;
 
 &lt;p&gt;A major drawback of &lt;i&gt;vanilla&lt;/i&gt; neural networks is the inability to learn long-term patterns in different data points. Recurrent Neural Nets are able to overcome this drawback by feeding the previous hidden states to the current hidden state. This is what differentiates them from &lt;i&gt;vanilla&lt;/i&gt; Neural Nets.&lt;/p&gt;
 
 &lt;p&gt;I implemented a char2char recurrent net using Tensorflow and left it to train on Linux Kernel Code overnight on my MacBook Air (i5 dual core). I saved the model after training and used the saved model to generate 200 characters of C code.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;
-  &lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__weak&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;yource_interrupt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__weak&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;yource_interrupt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 	&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;workqueue_struct&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;worker&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
@@ -38,14 +113,14 @@
 	&lt;span class=&quot;n&quot;&gt;lockdep_assert_held&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flush_slow_init_mod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;strict_iomem_check&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
-	&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 	&lt;span class=&quot;cm&quot;&gt;/* we release and optimization next only */&lt;/span&gt;
 	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ehdr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e_shend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;si_code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;62&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 			&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hending&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_namespace&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_namespace&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;urst&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 		&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigstart_code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KEXEC_ARCH_BITS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;(mew-&amp;gt;se.signal-&amp;gt;coter) list&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CPU_INTENSIVE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 				&lt;span class=&quot;n&quot;&gt;ptrace_exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
@@ -53,11 +128,10 @@
 		&lt;span class=&quot;k&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/figure&gt;
-
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;As you can probably see even if you’re not a C programmer the code looks alright, the RNN even does a good job at indenting the code and unless you look into it closely you probably won’t be able to notice errors. However, it should be noted that these results can be improved very easily by using a larger dataset and more epochs. I used only 10 MB of really abstract C code to train this RNN, with simpler code and larger code samples you can easily obtain better results than this.&lt;/p&gt;
-
 </description>
         <pubDate>Thu, 28 Sep 2017 00:00:00 +0530</pubDate>
         <link>http://localhost:4000/2017/09/28/Teaching-RNNs.html</link>
