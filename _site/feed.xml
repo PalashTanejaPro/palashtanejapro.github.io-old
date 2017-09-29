@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 29 Sep 2017 14:34:32 +0530</pubDate>
-    <lastBuildDate>Fri, 29 Sep 2017 14:34:32 +0530</lastBuildDate>
+    <pubDate>Fri, 29 Sep 2017 14:44:44 +0530</pubDate>
+    <lastBuildDate>Fri, 29 Sep 2017 14:44:44 +0530</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
     
       <item>
@@ -18,12 +18,15 @@
 &lt;p&gt;Each year between 50 and 528 million people are infected and approximately 10,000 to 20,000 die due to Dengue Fever.&lt;/p&gt;
 
 &lt;h3 id=&quot;methodology&quot;&gt;Methodology&lt;/h3&gt;
-&lt;p&gt;Research papers predicting dengue generally use meteorological data and don’t consider past incidence of the disease, which I found out to be a more important factor than weather conditions. Researchers also are not employing deep learning techniques and use simpler regression techniques like linear regression.&lt;/p&gt;
+&lt;p&gt;Research papers predicting dengue generally use meteorological data and don’t consider past incidence of the disease, which I found out to be a more important factor than weather conditions.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Researchers are not employing deep learning techniques and use simpler regression techniques like linear regression.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;I scraped dengue and weather data from the data.gov.sg and compiled it into one clean dataset. Contrary to research papers I used past incidence to predict future incidence. Then I created a neural network with 3 layers which contained 13 nodes each. I used sklearn’s train and test split function which split my 277 length dataset into 75% training data and 25% testing data.&lt;/p&gt;
 
 &lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
-&lt;p&gt;My neural net was able to achieve an R&lt;sup&gt;2&lt;/sup&gt; value of 0.9316 which is much better than the state-of-the-art values that other Researchers have got. The mean error of my model was only 35.11 cases. This proves that dengue prediction can be done very accurately even if a small dataset is available like the one I used. It also goes to show how deep learning can provide substantially better results even on very small datasets.&lt;/p&gt;
+&lt;p&gt;My neural net was able to achieve an &lt;strong&gt;R&lt;sup&gt;2&lt;/sup&gt; value of 0.9316&lt;/strong&gt; which is much better than the &lt;em&gt;state-of-the-art&lt;/em&gt; values that other Researchers have got. The &lt;strong&gt;mean error of my model was only 35.11 cases&lt;/strong&gt;. This proves that dengue prediction can be done very accurately even if a small dataset is available like the one I used. It also goes to show how deep learning can provide substantially better results even on very small datasets.&lt;/p&gt;
 
 &lt;amp-img src=&quot;http://localhost:4000/assets/images/dengue.png&quot; layout=&quot;responsive&quot; alt=&quot;Results&quot; height=&quot;800&quot; width=&quot;1220&quot;&gt;&lt;/amp-img&gt;
 
@@ -41,14 +44,14 @@
     
       <item>
         <title>Making Realistic Twitter Bots Using Markov Chains</title>
-        <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+        <description>&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
 
 &lt;p&gt;Markov chains, named after Andrey Markov, are mathematical systems that hop from one “state” (a situation or set of values) to another. For example, if you made a Markov chain model of a baby’s behavior, you might include “playing,” “eating”, “sleeping,” and “crying” as states, which together with other behaviors could form a ‘state space’: a list of all possible states. In addition, on top of the state space, a Markov chain tells you the probabilitiy of hopping, or “transitioning,” from one state to any other state—e.g., the chance that a baby currently playing will fall asleep in the next five minutes without crying first.&lt;/p&gt;
 
 &lt;p&gt;Even though they are overshadowed by Deep Learning Models like RNNs and DNNs, they prove to be very effective in sentence generation tasks. We have all seen the autocorrect predictions on our phones, in fact they are based on Markov chains and they can be tapped repeatedly to generate loopy sentences.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://setosa.io/ev/markov-chains/&quot;&gt;Here is a great introduction to markov chains.&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;implementation&quot;&gt;Implementation&lt;/h2&gt;
+&lt;h3 id=&quot;implementation&quot;&gt;Implementation&lt;/h3&gt;
 
 &lt;p&gt;I wanted to do something interesting and comedic with Markov Chains so I decided to make a Donald Trump tweet bot from a &lt;a href=&quot;https://www.kaggle.com/kingburrito666/better-donald-trump-tweets&quot;&gt;Trump tweet dataset.&lt;/a&gt; and made a state 2 Markov Chain from it.
 I used the tweepy library for Python to create the Twitter Bot.&lt;/p&gt;
@@ -76,7 +79,7 @@ I used the tweepy library for Python to create the Twitter Bot.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
+&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
 
 &lt;p&gt;My bot &lt;a href=&quot;https://twitter.com/__McDonaldTrump&quot;&gt;McDonaldTrump&lt;/a&gt; is puts out about 50-60% grammatically incorrect and incoherent tweets but the remaining ones are &lt;em&gt;worth a laugh!&lt;/em&gt;&lt;/p&gt;
 

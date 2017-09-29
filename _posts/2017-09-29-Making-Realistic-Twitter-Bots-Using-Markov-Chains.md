@@ -1,14 +1,16 @@
 ---
+title: Making Realistic Twitter Bots Using Markov Chains
 published: true
 ---
-## Introduction
+
+### Introduction
 
 Markov chains, named after Andrey Markov, are mathematical systems that hop from one "state" (a situation or set of values) to another. For example, if you made a Markov chain model of a baby's behavior, you might include "playing," "eating", "sleeping," and "crying" as states, which together with other behaviors could form a 'state space': a list of all possible states. In addition, on top of the state space, a Markov chain tells you the probabilitiy of hopping, or "transitioning," from one state to any other state---e.g., the chance that a baby currently playing will fall asleep in the next five minutes without crying first.
 
 Even though they are overshadowed by Deep Learning Models like RNNs and DNNs, they prove to be very effective in sentence generation tasks. We have all seen the autocorrect predictions on our phones, in fact they are based on Markov chains and they can be tapped repeatedly to generate loopy sentences.
 
 [Here is a great introduction to markov chains.](http://setosa.io/ev/markov-chains/)
-## Implementation
+### Implementation
 
 I wanted to do something interesting and comedic with Markov Chains so I decided to make a Donald Trump tweet bot from a [Trump tweet dataset.](https://www.kaggle.com/kingburrito666/better-donald-trump-tweets) and made a state 2 Markov Chain from it.
 I used the tweepy library for Python to create the Twitter Bot.
@@ -36,7 +38,7 @@ print("Tweet Made: ",line)
 time.sleep(900) #Tweet every 15 minutes
 ~~~
 
-## Results
+### Results
 
 My bot [McDonaldTrump](https://twitter.com/__McDonaldTrump) is puts out about 50-60% grammatically incorrect and incoherent tweets but the remaining ones are *worth a laugh!*
 
