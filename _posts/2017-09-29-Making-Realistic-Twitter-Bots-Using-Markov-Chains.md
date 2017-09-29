@@ -7,10 +7,34 @@ Markov chains, named after Andrey Markov, are mathematical systems that hop from
 
 Even though they are overshadowed by Deep Learning Models like RNNs and DNNs, they prove to be very effective in sentence generation tasks. We have all seen the autocorrect predictions on our phones, in fact they are based on Markov chains and they can be tapped repeatedly to generate loopy sentences.
 
+[Here is a great introduction to markov chains.](http://setosa.io/ev/markov-chains/)
 ## Implementation
 
-I wanted to do something interesting and comedic with Markov Chains so I decided to make a Donald Trump tweet bot from a [Trump tweet dataset.](https://www.kaggle.com/kingburrito666/better-donald-trump-tweets) and trained a state 2 Markov Chain on it.
-Then I used the tweepy library for Python and set my model loose on Twitter! It has not failed to surprise me in the 2 days that it has been alive.
+I wanted to do something interesting and comedic with Markov Chains so I decided to make a Donald Trump tweet bot from a [Trump tweet dataset.](https://www.kaggle.com/kingburrito666/better-donald-trump-tweets) and made a state 2 Markov Chain from it.
+I used the tweepy library for Python to create the Twitter Bot.
+~~~python
+import tweepy, time, sys
+import markovify
+
+ 
+#enter the corresponding information from your Twitter application:
+CONSUMER_KEY = 'KEY' #keep the quotes, replace this with your consumer key
+CONSUMER_SECRET = 'SECRET' #keep the quotes, replace this with your consumer secret key
+ACCESS_KEY = 'KEY' #keep the quotes, replace this with your access token
+ACCESS_SECRET = 'SECRET' #keep the quotes, replace this with your access token secret
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+api = tweepy.API(auth)
+ 
+model_json = open('sav1.json').read()
+model = markovify.Text.from_json(model_json)
+
+line = model.make_short_sentence(200)
+
+api.update_status(line)
+print("Tweet Made: ",line)
+time.sleep(900) #Tweet every 15 minutes
+~~~
 
 ## Results
 
